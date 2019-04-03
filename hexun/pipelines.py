@@ -9,6 +9,7 @@ import re
 import sys
 import pymysql
 reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 class HexunPipeline(object):
