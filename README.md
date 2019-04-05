@@ -1,3 +1,3 @@
 # spider
 爬虫练习
-爬取和讯网的一些文章，写成tet并写入mysql
+运用scrapy爬取和讯网的一些文章，写成txt并写入mysql
