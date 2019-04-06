@@ -90,14 +90,14 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 #利用redis去重
-#DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-#SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-#SCHEDULER_PERSIST = True
+DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+SCHEDULER_PERSIST = True
 
 #日志输出
-#LOG_ENCODING = 'utf-8'
-#LOG_FILE = "error.log"
-#LOG_LEVEL = 'ERROR'
+LOG_ENCODING = 'utf-8'
+LOG_FILE = "error.log"
+LOG_LEVEL = 'ERROR'
 
 #爬虫结束时发送爬虫的状态
 EXTENSIONS = {
