@@ -9,8 +9,7 @@ import re
 import sys
 import pymysql
 reload(sys)
-sys.setdefaultencoding('utf-8')
-
+sys.setdefaultencoding('utf8')
 
 class HexunPipeline(object):
 
@@ -22,7 +21,7 @@ class HexunPipeline(object):
             db='run',
             user='root',
             charset='utf8',
-            passwd='your-password',
+            passwd='123',
         )
         self.cursor = self.connect.cursor()
 

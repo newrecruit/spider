@@ -2,6 +2,7 @@
 import scrapy
 from scrapy import Request
 from hexun.items import HexunItem
+from hexun_analyzer import hexun_analyzer
 
 
 class StockSpider(scrapy.Spider):
@@ -10,25 +11,13 @@ class StockSpider(scrapy.Spider):
     start_urls = ['http://stock.hexun.com/']
 
     def parse(self, response):
-        tables = response.xpath("//div[@class='channelNav1']/a")
-        for table in tables[1:5]:
-            url = table.xpath('@href').extract()[0]
-            stock = table.xpath('text()').extract()[0]
+        urls, stocks = hexun_analyzer.get_nav_url(response)
+        for url, stock in zip(urls, stocks):
             yield Request(url=url, callback=self.lines, meta={'stock': stock}, dont_filter=True)
 
     def lines(self, response):
-        urls = []
-        if 'us' in response.url:
-            urls = response.xpath("//div[@class='infCon']")
-        elif 'hk' in response.url:
-            urls = response.xpath("//ul[@class='text2a']/li")
-        elif 'new' in response.url:
-            urls = response.xpath("//div[@class='pt_a']/ul[1]/li")
-        else:
-            urls = response.xpath("//div[@class='left']/ul[1]/li")
-        for url in urls:
-            title = url.xpath("a/text()").extract()[0]
-            url = url.xpath("a/@href").extract()[0]
+        urls, titles = hexun_analyzer.get_line_url(response)
+        for url, title in zip(urls, titles):
             yield Request(url=url, callback=self.data, meta={'title': title, 'stock': response.meta['stock']})
 
     def data(self, response):
