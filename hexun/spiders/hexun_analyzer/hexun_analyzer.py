@@ -25,4 +25,4 @@ def get_line_url(response):
     for url in url:
         titles.append(url.xpath("a/text()").extract()[0])
         urls.append(url.xpath("a/@href").extract()[0])
-    return urls,titles
+    return urls, titles

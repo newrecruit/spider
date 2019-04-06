@@ -8,8 +8,10 @@ import os
 import re
 import sys
 import pymysql
+
 reload(sys)
 sys.setdefaultencoding('utf8')
+
 
 class HexunPipeline(object):
 
@@ -55,5 +57,6 @@ class HexunPipeline(object):
         )
         self.connect.commit()
         return item
+
 
 

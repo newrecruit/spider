@@ -90,12 +90,23 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 #利用redis去重
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-SCHEDULER_PERSIST = True
+#DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+#SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+#SCHEDULER_PERSIST = True
 
 #日志输出
-LOG_ENCODING = 'utf-8'
-LOG_FILE = "error.log"
-LOG_LEVEL = 'ERROR'
+#LOG_ENCODING = 'utf-8'
+#LOG_FILE = "error.log"
+#LOG_LEVEL = 'ERROR'
 
+#爬虫结束时发送爬虫的状态
+EXTENSIONS = {
+   'scrapy.extensions.statsmailer.StatsMailer': 500,
+}
+STATSMAILER_RCPTS = ['***@qq.com']
+MAIL_FROM = '***@qq.com'
+MAIL_HOST = 'smtp.qq.com'
+MAIL_PORT = 465
+MAIL_USER = '***@qq.com'
+MAIL_PASS = 'your-email-password' #邮箱授权码
+MAIL_SSL = True

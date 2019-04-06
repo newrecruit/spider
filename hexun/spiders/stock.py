@@ -4,7 +4,6 @@ from scrapy import Request
 from hexun.items import HexunItem
 from hexun_analyzer import hexun_analyzer
 
-
 class StockSpider(scrapy.Spider):
     name = 'stock'
     allowed_domains = ['stock.hexun.com']
@@ -29,4 +28,3 @@ class StockSpider(scrapy.Spider):
         item['author'] = response.xpath("//*[@rel='nofollow']/text()").extract()[0]
         item['text'] = ''.join(response.xpath("//div[@class='art_contextBox']/p/text()").extract())
         yield item
-
