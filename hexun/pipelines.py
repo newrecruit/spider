@@ -57,6 +57,3 @@ class HexunPipeline(object):
         )
         self.connect.commit()
         return item
-
-
-
